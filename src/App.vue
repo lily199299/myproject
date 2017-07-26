@@ -7,18 +7,33 @@
     <ul v-for="item in items">
       <li v-bind:class="{finished : item.isFinished}" v-on:click="toggleFun(item)">{{ item.label }}</li>
     </ul>
+    <halou></halou>
+
   </div>
 
 </template>
 
 <script>
+  import Store from './store'
+  import Halou from './components/halou'
+
+  console.log(Store)
   export default {
     name: 'app',
     data () {
       return {
         title: 'this is a todo list',
-        items: [],
+        items: Store.fetch(),
         newItem: ''
+      }
+    },
+    components: {Halou},
+    watch: {
+      items: {
+        handler: function (items) {
+          Store.save(items)
+        },
+        deep: true
       }
     },
     methods: {
