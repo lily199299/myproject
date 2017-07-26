@@ -16,7 +16,7 @@
     name: 'app',
     data () {
       return {
-        title: 'this is a app',
+        title: 'this is a todo list',
         items: [],
         newItem: ''
       }
