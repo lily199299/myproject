@@ -7,7 +7,10 @@
     <ul v-for="item in items">
       <li v-bind:class="{finished : item.isFinished}" v-on:click="toggleFun(item)">{{ item.label }}</li>
     </ul>
-    <halou></halou>
+
+
+    <p>tell sth  {{ msg }}</p>
+    <halou msgFromfather="you go out!" v-on:tellsth="listen"></halou>
 
   </div>
 
@@ -24,7 +27,8 @@
       return {
         title: 'this is a todo list',
         items: Store.fetch(),
-        newItem: ''
+        newItem: '',
+        msg: ''
       }
     },
     components: {Halou},
@@ -47,6 +51,10 @@
           isFinished: false
         })
         this.newItem = ''
+      },
+      listen: function (msg) {
+        console.log(msg)
+        this.msg = msg
       }
     }
   }
